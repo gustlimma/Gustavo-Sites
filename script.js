@@ -1,5 +1,5 @@
 (function () {
-  var WA = '5515997693348';
+  var WA = '5515998290596';
 
   // Links do WhatsApp com mensagem personalizada por botão
   document.querySelectorAll('[data-wa]').forEach(function (el) {
@@ -31,7 +31,7 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
 
   // Revelação suave das seções
-  var targets = document.querySelectorAll('.sec h2, .list li, .rows article, .chips span, .steps li, .cta__in > *');
+  var targets = document.querySelectorAll('.sec h2, .svc, .ia, .bene, .cta-row > *');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
