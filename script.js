@@ -41,5 +41,20 @@
     targets.forEach(function (t) { t.classList.add('reveal'); io.observe(t); });
   }
 
+  // Modo claro / escuro
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('theme');
+  function setTheme(t) {
+    root.setAttribute('data-theme', t);
+    themeBtn.setAttribute('aria-checked', t === 'dark');
+    themeBtn.setAttribute('aria-label', t === 'dark' ? 'Modo escuro' : 'Modo claro');
+  }
+  setTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+  themeBtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    setTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
   document.getElementById('ano').textContent = new Date().getFullYear();
 })();
