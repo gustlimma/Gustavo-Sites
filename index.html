@@ -44,9 +44,18 @@ img,svg{display:block;max-width:100%}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
 .brand{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.55rem}
 .brand b{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--star);color:var(--ink);font-size:1rem}
-.menu{display:flex;align-items:center;gap:clamp(18px,3vw,36px);font-weight:500;font-size:.98rem}
+.menu{display:flex;align-items:center;gap:clamp(16px,2vw,30px);font-weight:500;font-size:.98rem}
 .menu a:not(.btn){color:var(--text-2);transition:color .2s}
 .menu a:not(.btn):hover{color:var(--text)}
+.menu .menu-cta{display:none}
+.nav .wrap{max-width:1320px;gap:16px}
+.brand,.menu a,.nav-cta{white-space:nowrap}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang{display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(238,243,248,.06);border:1px solid var(--line)}
+.lang button{all:unset;box-sizing:border-box;cursor:pointer;min-width:42px;height:34px;display:inline-grid;place-items:center;border-radius:999px;font-weight:700;font-size:.85rem;letter-spacing:.02em;color:var(--text-2);transition:background .2s,color .2s}
+.lang button:hover{color:var(--text)}
+.lang button[aria-pressed="true"]{background:rgba(238,243,248,.16);color:var(--text)}
+.lang button:focus-visible{outline:3px solid var(--star);outline-offset:2px}
 .burger{display:none;background:none;border:1px solid var(--line);color:var(--text);width:44px;height:44px;border-radius:12px;cursor:pointer}
 .burger span{display:block;width:18px;height:2px;background:currentColor;margin:4px auto;transition:transform .25s,opacity .25s}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
@@ -290,11 +299,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   footer{padding-bottom:6.5rem}
 }
 @media (max-width:480px){
+  .brand{font-size:1.05rem;gap:.45rem}
+  .brand b{width:28px;height:28px;font-size:.9rem}
+  .nav-right{gap:8px}
+  .lang{padding:3px}
+  .lang button{min-width:36px;height:32px;font-size:.8rem}
+  .burger{width:42px;height:42px}
   .res{padding:0 12px;gap:10px}
   .res .tag{display:none}
   .res.me.is-top .tag.hide{display:none}
 }
-@media (max-width:1080px){
+@media (max-width:1240px){
+  .nav-right .nav-cta{display:none}
+  .menu .menu-cta{display:inline-flex}
   .menu{position:fixed;inset:71px 0 auto 0;background:var(--ink);flex-direction:column;align-items:stretch;gap:0;padding:8px var(--gutter) 24px;border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .35s;visibility:hidden}
   .menu.open{transform:none;visibility:visible}
   .menu a:not(.btn){padding:1rem 0;border-bottom:1px solid var(--line);font-size:1.1rem}
@@ -316,15 +333,22 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#topo" aria-label="Gustavo Proença, início"><b>G</b>Gustavo Proença</a>
-    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <nav class="menu" id="menu" aria-label="Principal">
       <a href="#landing">Landing page</a>
       <a href="#exemplos">Exemplos</a>
       <a href="#servicos">Serviços</a>
       <a href="#ia">Inteligência artificial</a>
       <a href="#contato">Contato</a>
-      <a class="btn btn-primary" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Análise gratuita</a>
+      <a class="btn btn-primary menu-cta" data-wa="analysis" href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Análise gratuita</a>
     </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+        <button type="button" data-lang="pt" aria-pressed="true" lang="pt">PT</button>
+      </div>
+      <a class="btn btn-primary nav-cta" data-magnetic data-wa="analysis" href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Análise gratuita</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -358,7 +382,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Seus serviços, sua região e suas avaliações em um só lugar.</li>
       </ul>
       <div class="cta-row">
-        <a class="btn btn-primary" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Presto%20servi%C3%A7os%20e%20ainda%20n%C3%A3o%20tenho%20site.%20Quero%20uma%20landing%20page." target="_blank" rel="noopener">Quero minha landing page</a>
+        <a data-wa="landing" class="btn btn-primary" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Presto%20servi%C3%A7os%20e%20ainda%20n%C3%A3o%20tenho%20site.%20Quero%20uma%20landing%20page." target="_blank" rel="noopener">Quero minha landing page</a>
         <a class="btn btn-ghost" data-magnetic href="https://wa.me/5515998290596" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.700 7.100L3 21l1.900-6.200A8 8 0 1 1 21 12z"/></svg>
           Falar no WhatsApp</a>
@@ -390,7 +414,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       <h2>Com a página pronta, coloque sua empresa na frente de quem está procurando</h2>
       <p class="sec-lead">Mais visibilidade no Google, mais clientes e resultados reais para o seu negócio.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Quero minha análise gratuita</a>
+        <a data-wa="analysis" class="btn btn-primary" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Quero minha análise gratuita</a>
       </div>
     </div>
     <div class="serp" id="serp" aria-label="Simulação de busca no Google">
@@ -440,7 +464,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
         <h2>Análise gratuita da sua presença no Google</h2>
         <p>Descubra como sua empresa pode aparecer mais e atrair mais clientes.</p>
         <div class="cta-row">
-          <a class="btn btn-dark" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Fale comigo no WhatsApp</a>
+          <a data-wa="analysis" class="btn btn-dark" data-magnetic href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita%20da%20presen%C3%A7a%20no%20Google." target="_blank" rel="noopener">Fale comigo no WhatsApp</a>
         </div>
       </div>
       <div class="google-card" id="gcard" aria-hidden="true">
@@ -466,7 +490,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 </footer>
 
 <div class="dock" id="dock">
-  <a class="btn btn-primary" href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita." target="_blank" rel="noopener">Análise gratuita</a>
+  <a data-wa="dock" class="btn btn-primary" href="https://wa.me/5515998290596?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20minha%20an%C3%A1lise%20gratuita." target="_blank" rel="noopener">Análise gratuita</a>
   <a class="btn btn-ghost" href="tel:+5515998290596">Ligar</a>
 </div>
 
@@ -476,9 +500,90 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   var $ = function(s,r){return (r||document).querySelector(s)};
 
+  /* language: PT (default) / EN */
+  var lang = 'pt';
+  try{ lang = localStorage.getItem('gp-lang') === 'en' ? 'en' : 'pt'; }catch(e){}
+  function L(pt,en){ return lang==='en' ? en : pt; }
+  var MAP = {
+    'Landing page':'Landing page','Exemplos':'Examples','Serviços':'Services','Inteligência artificial':'Artificial intelligence','Contato':'Contact','Análise gratuita':'Free analysis',
+    'Gustavo Proença, início':'Gustavo Proença, home','Abrir menu':'Open menu','Principal':'Main',
+    'Veja como pode ficar o site do seu negócio':'See how your business website could look',
+    'Arraste, use as setas ou clique em um exemplo para trazê-lo para a frente.':'Drag, use the arrows, or click an example to bring it to the front.',
+    'Exemplos de sites e landing pages':'Website and landing page examples','Exemplo anterior':'Previous example','Próximo exemplo':'Next example','Escolher exemplo':'Choose example',
+    'Para quem presta serviço':'For service providers',
+    'Uma página simples e direta, feita para o cliente que encontrou você no Google chamar no WhatsApp ou pedir um orçamento.':'A simple, direct page made so the customer who found you on Google can message you on WhatsApp or ask for a quote.',
+    'Rápida e fácil de usar no celular.':'Fast and easy to use on a phone.',
+    'Botão de WhatsApp e de ligação sempre à vista.':'WhatsApp and call buttons always in view.',
+    'Seus serviços, sua região e suas avaliações em um só lugar.':'Your services, your area and your reviews in one place.',
+    'Quero minha landing page':'I want my landing page','Falar no WhatsApp':'Chat on WhatsApp',
+    'Marketing digital e inteligência artificial para colocar sua empresa na frente de quem está procurando.':'Digital marketing and artificial intelligence to put your business in front of the people searching for it.',
+    'Exemplo ilustrativo de landing page.':'Illustrative landing page example.',
+    'Exemplo de landing page para prestador de serviço':'Example landing page for a service provider',
+    'Seu serviço na sua cidade':'Your service in your city','Atendimento rápido e orçamento sem compromisso.':'Fast service and a no-obligation quote.',
+    'Chamar no WhatsApp':'Message on WhatsApp','Ligar agora':'Call now','5,0 no Google':'5.0 on Google',
+    'Serviço 1':'Service 1','Serviço 2':'Service 2','Serviço 3':'Service 3',
+    'Com a página pronta, coloque sua empresa na frente de quem está procurando':'With the page ready, put your business in front of the people searching',
+    'Mais visibilidade no Google, mais clientes e resultados reais para o seu negócio.':'More visibility on Google, more customers and real results for your business.',
+    'Quero minha análise gratuita':'I want my free analysis',
+    'Simulação de busca no Google':'Google search simulation','Resultados perto de você':'Results near you',
+    'Simulação ilustrativa, com empresas fictícias.':'Illustrative simulation with fictional businesses.','Ver de novo':'Replay',
+    'Tudo o que sua empresa precisa para ser encontrada':'Everything your business needs to be found',
+    'Escolha um serviço para ver o que está incluído.':'Pick a service to see what’s included.',
+    'Inteligência artificial a favor do seu negócio':'Artificial intelligence working for your business',
+    'Usamos IA para criar conteúdos, otimizar sua presença no Google, atrair o público certo e aumentar seus resultados.':'We use AI to create content, optimize your Google presence, attract the right audience and grow your results.',
+    'Mais clientes, mais visibilidade e mais resultados.':'More customers, more visibility and more results.',
+    '100% online: atendemos qualquer empresa do Brasil.':'100% online: we serve any business in Brazil.',
+    'Soluções personalizadas para o seu negócio e seu objetivo.':'Solutions tailored to your business and your goal.',
+    'Exemplo de texto criado com IA':'Example of text created with AI','Exemplo ilustrativo de texto criado com IA.':'Illustrative example of text created with AI.',
+    'Análise gratuita da sua presença no Google':'Free analysis of your Google presence',
+    'Descubra como sua empresa pode aparecer mais e atrair mais clientes.':'Find out how your business can show up more and attract more customers.',
+    'Fale comigo no WhatsApp':'Message me on WhatsApp',
+    'Sua empresa':'Your business','5,0':'5.0','no Google':'on Google','Visibilidade':'Visibility','Ligações':'Calls','Rotas no mapa':'Map directions',
+    'Exemplo ilustrativo de perfil de empresa.':'Illustrative business profile example.',
+    '© 2026 Gustavo Proença. Marketing Digital & IA.':'© 2026 Gustavo Proença. Digital Marketing & AI.','Ligar':'Call'
+  };
+  var WA_MSG = {
+    landing:['Olá, Gustavo! Presto serviços e ainda não tenho site. Quero uma landing page.','Hi Gustavo! I offer services and don’t have a website yet. I’d like a landing page.'],
+    analysis:['Olá, Gustavo! Quero minha análise gratuita da presença no Google.','Hi Gustavo! I’d like my free analysis of my Google presence.'],
+    dock:['Olá, Gustavo! Quero minha análise gratuita.','Hi Gustavo! I’d like my free analysis.']
+  };
+  function walk(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {acceptNode:function(n){ var t=n.parentNode.nodeName; return (t==='SCRIPT'||t==='STYLE') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; }});
+    var n;
+    while((n = w.nextNode())){
+      if(n.__o === undefined){ var t = n.nodeValue.trim(); if(t && MAP[t] !== undefined){ n.__o = n.nodeValue; n.__k = t; } else n.__o = null; }
+      if(n.__o){ n.nodeValue = n.__o.split(n.__k).join(lang==='en' ? MAP[n.__k] : n.__k); }
+    }
+    document.querySelectorAll('[aria-label]').forEach(function(el){
+      if(el.__al === undefined){ var v = el.getAttribute('aria-label'); el.__al = MAP[v] !== undefined ? v : null; }
+      if(el.__al) el.setAttribute('aria-label', lang==='en' ? MAP[el.__al] : el.__al);
+    });
+  }
+  function applyLang(){
+    document.documentElement.lang = lang==='en' ? 'en' : 'pt-BR';
+    document.title = L('Gustavo Proença | Marketing Digital e Inteligência Artificial','Gustavo Proença | Digital Marketing and Artificial Intelligence');
+    var md = document.querySelector('meta[name="description"]');
+    if(md) md.setAttribute('content', L('Google Meu Negócio, Google Ads, SEO local, sites, landing pages, redes sociais e IA para colocar sua empresa na frente de quem está procurando. Atendimento 100% online.','Google Business Profile, Google Ads, local SEO, websites, landing pages, social media and AI to put your business in front of the people searching for it. 100% online service.'));
+    walk();
+    document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = 'https://wa.me/5515998290596?text=' + encodeURIComponent(WA_MSG[a.getAttribute('data-wa')][lang==='en'?1:0]); });
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang')===lang)); });
+  }
+  function setLang(l){
+    if(l===lang) return; lang = l;
+    try{ localStorage.setItem('gp-lang', l); }catch(e){}
+    applyLang(); renderH1(); renderServices(); renderMarquee(); renderChat(); rebuildSerp(); refreshCarousel();
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); }); });
+
   /* headline: words rise one by one */
-  var h1 = $('#h1'), words = h1.textContent.trim().split(' ');
-  h1.innerHTML = words.map(function(w,i){return '<span class="w" aria-hidden="true"><span style="--i:'+i+'">'+w+'</span></span> '}).join('');
+  var H1 = ['Presta serviço e ainda não tem site? Eu crio a sua landing page.','Offer a service but don\u2019t have a website yet? I build your landing page.'];
+  var h1 = $('#h1');
+  function renderH1(){
+    var t = L(H1[0],H1[1]);
+    h1.setAttribute('aria-label', t);
+    h1.innerHTML = t.split(' ').map(function(w,i){return '<span class="w" aria-hidden="true"><span style="--i:'+i+'">'+w+'</span></span> '}).join('');
+  }
+  renderH1();
 
   /* progress + nav */
   var bar = $('#bar'), nav = $('#nav'), dock = $('#dock'), contact = $('#contato');
@@ -501,23 +606,28 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 
   /* services */
   var services = [
-    ['Google Business Profile',['Otimização para o Google Maps','Mais visibilidade local','Gestão e atualizações']],
-    ['Google Ads',['Anúncios que geram clientes','Segmentação precisa','Alto retorno sobre o investimento']],
-    ['Google Local Services',['Google Guaranteed','Mais confiança para o cliente','Leads qualificados']],
-    ['SEO Local',['Melhor posicionamento','Mais tráfego orgânico','Autoridade no seu mercado']],
-    ['Criação de sites e landing pages',['Design moderno e responsivo','Foco em conversão','Sites e páginas que vendem']],
-    ['Gestão de redes sociais',['Instagram e Facebook','Conteúdo estratégico','Engajamento real']],
-    ['Meta Ads',['Anúncios no Instagram e Facebook','Público certo','Mais leads e vendas']],
-    ['Artes e design',['Posts, banners e flyers','Identidade visual','Sua marca mais profissional']],
-    ['Edição profissional de vídeos',['Vídeos para redes sociais','Anúncios e comerciais','Mais engajamento e conversão']],
-    ['Imagens com IA',['Artes e imagens personalizadas','Alta qualidade','Mais criatividade para sua marca']],
-    ['Textos com IA',['Conteúdos otimizados','Mais atratividade e engajamento','Comunicação estratégica']]
+    {n:['Google Business Profile','Google Business Profile'],i:[['Otimização para o Google Maps','Google Maps optimization'],['Mais visibilidade local','More local visibility'],['Gestão e atualizações','Management and updates']]},
+    {n:['Google Ads','Google Ads'],i:[['Anúncios que geram clientes','Ads that bring in customers'],['Segmentação precisa','Precise targeting'],['Alto retorno sobre o investimento','High return on investment']]},
+    {n:['Google Local Services','Google Local Services'],i:[['Google Guaranteed','Google Guaranteed'],['Mais confiança para o cliente','More trust for the customer'],['Leads qualificados','Qualified leads']]},
+    {n:['SEO Local','Local SEO'],i:[['Melhor posicionamento','Better ranking'],['Mais tráfego orgânico','More organic traffic'],['Autoridade no seu mercado','Authority in your market']]},
+    {n:['Criação de sites e landing pages','Website and landing page creation'],i:[['Design moderno e responsivo','Modern, responsive design'],['Foco em conversão','Conversion focus'],['Sites e páginas que vendem','Sites and pages that sell']]},
+    {n:['Gestão de redes sociais','Social media management'],i:[['Instagram e Facebook','Instagram and Facebook'],['Conteúdo estratégico','Strategic content'],['Engajamento real','Real engagement']]},
+    {n:['Meta Ads','Meta Ads'],i:[['Anúncios no Instagram e Facebook','Instagram and Facebook ads'],['Público certo','The right audience'],['Mais leads e vendas','More leads and sales']]},
+    {n:['Artes e design','Art and design'],i:[['Posts, banners e flyers','Posts, banners and flyers'],['Identidade visual','Visual identity'],['Sua marca mais profissional','A more professional brand']]},
+    {n:['Edição profissional de vídeos','Professional video editing'],i:[['Vídeos para redes sociais','Videos for social media'],['Anúncios e comerciais','Ads and commercials'],['Mais engajamento e conversão','More engagement and conversion']]},
+    {n:['Imagens com IA','AI images'],i:[['Artes e imagens personalizadas','Custom art and images'],['Alta qualidade','High quality'],['Mais criatividade para sua marca','More creativity for your brand']]},
+    {n:['Textos com IA','AI copywriting'],i:[['Conteúdos otimizados','Optimized content'],['Mais atratividade e engajamento','More appeal and engagement'],['Comunicação estratégica','Strategic communication']]}
   ];
   var svc = $('#svc');
-  svc.innerHTML = services.map(function(s,i){
-    return '<div class="row"><button type="button" aria-expanded="false" aria-controls="p'+i+'"><h3>'+s[0]+'</h3><span class="plus" aria-hidden="true"></span></button>'
-      + '<div class="panel" id="p'+i+'" role="region"><div><ul>'+s[1].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div></div></div>';
-  }).join('');
+  function renderServices(){
+    var open = svc.querySelector('.row.open'), oi = open ? [].indexOf.call(svc.children, open) : -1;
+    svc.innerHTML = services.map(function(s,i){
+      var on = i===oi;
+      return '<div class="row'+(on?' open':'')+'"><button type="button" aria-expanded="'+on+'" aria-controls="p'+i+'"><h3>'+L(s.n[0],s.n[1])+'</h3><span class="plus" aria-hidden="true"></span></button>'
+        + '<div class="panel" id="p'+i+'" role="region"><div><ul>'+s.i.map(function(x){return '<li>'+L(x[0],x[1])+'</li>'}).join('')+'</ul></div></div></div>';
+    }).join('');
+  }
+  renderServices();
   svc.addEventListener('click', function(e){
     var b = e.target.closest('button'); if(!b) return;
     var row = b.parentElement, open = !row.classList.contains('open');
@@ -532,9 +642,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   });
 
   /* marquee */
-  var names = services.map(function(s){return s[0]});
-  var html = names.map(function(n){return '<span>'+n+'</span>'}).join('');
-  $('#mq').innerHTML = html + html;
+  function renderMarquee(){
+    var html = services.map(function(x){return '<span>'+L(x.n[0],x.n[1])+'</span>'}).join('');
+    $('#mq').innerHTML = html + html;
+  }
+  renderMarquee();
 
   /* reveal */
   var io = new IntersectionObserver(function(es){
@@ -544,32 +656,43 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 
   /* AI chat: types once when visible */
   var chat = $('#chat'), chatDone = false;
-  var msgs = [
-    ['u','Escreva uma postagem para o Google Meu Negócio de uma desentupidora que atende 24 horas.'],
-    ['a','<small>Texto criado com IA</small>Entupimento fora de hora? Atendemos 24 horas, inclusive aos domingos. Chame no WhatsApp, descreva o problema e receba a visita de um técnico ainda hoje.']
-  ];
+  function msgsNow(){ return [
+    ['u', L('Escreva uma postagem para o Google Meu Negócio de uma desentupidora que atende 24 horas.','Write a Google Business Profile post for a drain cleaning company that works 24 hours.')],
+    ['a', '<small>'+L('Texto criado com IA','Text created with AI')+'</small>'+L('Entupimento fora de hora? Atendemos 24 horas, inclusive aos domingos. Chame no WhatsApp, descreva o problema e receba a visita de um técnico ainda hoje.','Clogged drain at odd hours? We are available 24 hours, Sundays included. Message us on WhatsApp, describe the problem and get a technician visit today.')]
+  ]; }
   function runChat(){
     if(chatDone) return; chatDone = true;
-    msgs.forEach(function(m,i){
+    msgsNow().forEach(function(m,i){
       var b = document.createElement('div'); b.className = 'bubble ' + m[0]; b.style.display = 'none'; b.innerHTML = m[1]; chat.appendChild(b);
       setTimeout(function(){ b.style.display = 'block'; if(!reduce) b.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:450,easing:'ease-out'}); }, reduce ? 0 : 500 + i*1500);
     });
+  }
+  function renderChat(){
+    if(!chatDone) return;
+    chat.innerHTML = '';
+    msgsNow().forEach(function(m){ var b = document.createElement('div'); b.className = 'bubble ' + m[0]; b.innerHTML = m[1]; chat.appendChild(b); });
   }
   new IntersectionObserver(function(es,o){ if(es[0].isIntersecting){ runChat(); o.disconnect(); } },{threshold:.35}).observe(chat);
 
   /* hero: search simulation (the one orchestrated moment) */
   var list = $('#list'), qEl = $('#q'), stateEl = $('#state'), replay = $('#replay');
-  var H = 84, GAP = 10, QUERY = 'desentupidora perto de mim';
-  var rows = [
-    {n:'Hidráulica Silva', fill:92, rev:'4,6 (213)', sub:'Aberto agora'},
-    {n:'Desentupidora Rápida', fill:84, rev:'4,2 (98)', sub:'Fecha às 18h'},
-    {n:'Casa Limpa Serviços', fill:76, rev:'3,8 (41)', sub:'Aberto agora'},
-    {n:'Sua empresa', fill:36, rev:'1,8 (3)', sub:'Fechado', me:true}
-  ];
-  list.innerHTML = rows.map(function(r,i){
-    return '<div class="res'+(r.me?' me':'')+'" data-i="'+i+'"><span class="pin"></span><div class="info"><div class="name">'+r.n+'</div><div class="sub"><span class="stars" style="--fill:'+r.fill+'%"><i style="width:'+r.fill+'%"></i></span><span class="rv">'+r.rev+'</span><span class="st">'+r.sub+'</span></div></div>'+(r.me?'<span class="tag hide">1º no mapa</span>':'')+'</div>';
-  }).join('');
-  var els = list.querySelectorAll('.res');
+  var H = 84, GAP = 10, QUERY = '';
+  var rows = [], els = [];
+  function buildRows(){
+    QUERY = L('desentupidora perto de mim','drain cleaning near me');
+    rows = [
+      {n:L('Hidráulica Silva','Silva Plumbing'), fill:92, rev:L('4,6 (213)','4.6 (213)'), sub:L('Aberto agora','Open now')},
+      {n:L('Desentupidora Rápida','Quick Drain Cleaning'), fill:84, rev:L('4,2 (98)','4.2 (98)'), sub:L('Fecha às 18h','Closes at 6 pm')},
+      {n:L('Casa Limpa Serviços','Clean House Services'), fill:76, rev:L('3,8 (41)','3.8 (41)'), sub:L('Aberto agora','Open now')},
+      {n:L('Sua empresa','Your business'), fill:36, rev:L('1,8 (3)','1.8 (3)'), sub:L('Fechado','Closed'), me:true}
+    ];
+    list.innerHTML = rows.map(function(r,i){
+      return '<div class="res'+(r.me?' me':'')+'" data-i="'+i+'"><span class="pin"></span><div class="info"><div class="name">'+r.n+'</div><div class="sub"><span class="stars" style="--fill:'+r.fill+'%"><i style="width:'+r.fill+'%"></i></span><span class="rv">'+r.rev+'</span><span class="st">'+r.sub+'</span></div></div>'+(r.me?'<span class="tag hide">'+L('1º no mapa','#1 on the map')+'</span>':'')+'</div>';
+    }).join('');
+    els = list.querySelectorAll('.res');
+    stateEl.textContent = L('Antes da otimização','Before optimization');
+  }
+  buildRows();
   function place(order){
     els.forEach(function(el,i){
       var pos = order[i];
@@ -582,25 +705,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     me.classList.toggle('is-top', top);
     me.querySelector('.stars').style.setProperty('--fill', (top?100:r.fill)+'%');
     me.querySelector('.stars i').style.width = (top?100:r.fill)+'%';
-    me.querySelector('.rv').textContent = top ? '5,0 (87)' : r.rev;
-    me.querySelector('.st').textContent = top ? 'Aberto agora' : r.sub;
+    me.querySelector('.rv').textContent = top ? L('5,0 (87)','5.0 (87)') : r.rev;
+    me.querySelector('.st').textContent = top ? L('Aberto agora','Open now') : r.sub;
   }
   var timers = [];
   function later(fn,ms){ timers.push(setTimeout(fn,ms)); }
   function play(){
     timers.forEach(clearTimeout); timers = [];
-    qEl.textContent = ''; stateEl.textContent = 'Antes da otimização';
+    qEl.textContent = ''; stateEl.textContent = L('Antes da otimização','Before optimization');
     setMe(false);
     list.querySelectorAll('.res').forEach(function(e){e.style.transitionDuration='0s'});
     place([0,1,2,3]);
     requestAnimationFrame(function(){ requestAnimationFrame(function(){ list.querySelectorAll('.res').forEach(function(e){e.style.transitionDuration=''}); }); });
-    if(reduce){ qEl.textContent = QUERY; stateEl.textContent = 'Depois da otimização'; setMe(true); place([1,2,3,0]); return; }
+    if(reduce){ qEl.textContent = QUERY; stateEl.textContent = L('Depois da otimização','After optimization'); setMe(true); place([1,2,3,0]); return; }
     var i = 0;
     (function type(){
       if(i <= QUERY.length){ qEl.textContent = QUERY.slice(0,i++); later(type, 55); }
       else {
-        later(function(){ stateEl.textContent = 'Otimizando perfil, avaliações e anúncios'; }, 700);
-        later(function(){ place([1,2,3,0]); setMe(true); stateEl.textContent = 'Depois da otimização'; }, 2200);
+        later(function(){ stateEl.textContent = L('Otimizando perfil, avaliações e anúncios','Optimizing profile, reviews and ads'); }, 700);
+        later(function(){ place([1,2,3,0]); setMe(true); stateEl.textContent = L('Depois da otimização','After optimization'); }, 2200);
       }
     })();
   }
@@ -608,6 +731,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
   var started = false;
   new IntersectionObserver(function(es){ if(es[0].isIntersecting && !started){ started = true; later(play, 1100); } },{threshold:.3}).observe($('#serp'));
   replay.addEventListener('click', play);
+  function rebuildSerp(){ buildRows(); if(started){ play(); } else { place([0,1,2,3]); qEl.textContent = ''; } }
 
   /* hero background: connected points that lean toward the pointer */
   var cv = $('#net'), cx = cv.getContext('2d'), pts = [], mouse = {x:-999,y:-999}, W=0, Hh=0, dpr = Math.min(devicePixelRatio||1,2), live = true;
@@ -642,24 +766,23 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
 
   /* examples: 3D carousel (edit this list; drop images into /exemplos) */
   var EXAMPLES = [
-    {title:'Landing page para prestador de serviço', type:'Landing page', img:'exemplos/site-1.webp', url:''},
-    {title:'Site institucional para empresa local', type:'Site institucional', img:'exemplos/site-2.webp', url:''},
-    {title:'Página de orçamento com WhatsApp', type:'Landing page', img:'exemplos/site-3.webp', url:''},
-    {title:'Site para clínica e consultório', type:'Site institucional', img:'exemplos/site-4.webp', url:''},
-    {title:'Página para anúncios no Google', type:'Landing page', img:'exemplos/site-5.webp', url:''},
-    {title:'Site para loja e comércio', type:'Site institucional', img:'exemplos/site-6.webp', url:''},
-    {title:'Portfólio de serviços e obras', type:'Site de portfólio', img:'exemplos/site-7.webp', url:''}
+    {title:'Landing page para prestador de serviço', titleEn:'Landing page for a service provider', type:'Landing page', typeEn:'Landing page', img:'exemplos/site-1.webp', url:''},
+    {title:'Site institucional para empresa local', titleEn:'Corporate website for a local business', type:'Site institucional', typeEn:'Corporate website', img:'exemplos/site-2.webp', url:''},
+    {title:'Página de orçamento com WhatsApp', titleEn:'Quote page with WhatsApp', type:'Landing page', typeEn:'Landing page', img:'exemplos/site-3.webp', url:''},
+    {title:'Site para clínica e consultório', titleEn:'Website for a clinic or practice', type:'Site institucional', typeEn:'Corporate website', img:'exemplos/site-4.webp', url:''},
+    {title:'Página para anúncios no Google', titleEn:'Landing page for Google ads', type:'Landing page', typeEn:'Landing page', img:'exemplos/site-5.webp', url:''},
+    {title:'Site para loja e comércio', titleEn:'Website for a store', type:'Site institucional', typeEn:'Corporate website', img:'exemplos/site-6.webp', url:''},
+    {title:'Portfólio de serviços e obras', titleEn:'Portfolio of services and projects', type:'Site de portfólio', typeEn:'Portfolio website', img:'exemplos/site-7.webp', url:''}
   ];
   var PAL = [['#ffd23f','#14263a'],['#4ea1ff','#0d1b2a'],['#5fd39a','#10231f'],['#ff8a65','#2a1a16'],['#b58cff','#1a1430'],['#3dd6d0','#0e2429'],['#e8eef5','#1e2a38']];
   var stage = $('#xs'), box = $('#xsCards'), N = EXAMPLES.length, act = 0, cards = [], prevPos = [];
   var capT = $('#xsTitle'), capY = $('#xsType'), pager = $('#xsPager');
   function placeholder(i){
     var c = PAL[i % PAL.length];
-    return '<div class="ph" style="--c1:'+c[0]+';--c2:'+c[1]+'"><div class="ph-bar"><i></i><i></i><i></i></div><div class="ph-hero"><b></b><b></b><span></span></div><div class="ph-grid"><i></i><i></i><i></i></div><small>Imagem do projeto '+(i+1)+'</small></div>';
+    return '<div class="ph" style="--c1:'+c[0]+';--c2:'+c[1]+'"><div class="ph-bar"><i></i><i></i><i></i></div><div class="ph-hero"><b></b><b></b><span></span></div><div class="ph-grid"><i></i><i></i><i></i></div><small>'+L('Imagem do projeto ','Project image ')+(i+1)+'</small></div>';
   }
   EXAMPLES.forEach(function(ex,i){
     var b = document.createElement('button'); b.type='button'; b.className='xcard'; b.tabIndex=-1;
-    b.setAttribute('aria-label','Exemplo '+(i+1)+' de '+N+': '+ex.title);
     var t = document.createElement('div'); t.className='tilt'; t.innerHTML = placeholder(i);
     if(ex.img){
       var im = new Image(); im.alt=''; im.decoding='async'; if(i>0) im.loading='lazy'; im.draggable=false;
@@ -667,7 +790,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       im.src = ex.img;
     }
     b.appendChild(t); box.appendChild(b); cards.push(b); prevPos.push(0);
-    var pb = document.createElement('button'); pb.type='button'; pb.textContent=i+1; pb.setAttribute('aria-label','Ir para o exemplo '+(i+1));
+    var pb = document.createElement('button'); pb.type='button'; pb.textContent=i+1; 
     pb.addEventListener('click', function(){ go(i); }); pager.appendChild(pb);
   });
   function wrap(d){ var h=N/2; while(d>=h) d-=N; while(d<-h) d+=N; return d; }
@@ -690,11 +813,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
     });
   }
   function caption(){
-    var ex = EXAMPLES[act]; capT.textContent = ex.title; capY.textContent = ex.type;
+    var ex = EXAMPLES[act]; capT.textContent = L(ex.title,ex.titleEn); capY.textContent = L(ex.type,ex.typeEn);
     pager.querySelectorAll('button').forEach(function(b,i){ if(i===act) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current'); });
   }
+  function refreshCarousel(){
+    cards.forEach(function(c,i){
+      c.setAttribute('aria-label', L('Exemplo ','Example ')+(i+1)+L(' de ',' of ')+N+': '+L(EXAMPLES[i].title,EXAMPLES[i].titleEn));
+      var sm = c.querySelector('.ph small'); if(sm) sm.textContent = L('Imagem do projeto ','Project image ')+(i+1);
+    });
+    pager.querySelectorAll('button').forEach(function(b,i){ b.setAttribute('aria-label', L('Ir para o exemplo ','Go to example ')+(i+1)); });
+    caption();
+  }
   function go(i){ act = ((i % N) + N) % N; render(0); caption(); }
-  render(0,true); caption();
+  render(0,true); refreshCarousel();
   $('#xsPrev').addEventListener('click', function(){ go(act-1); restart(); });
   $('#xsNext').addEventListener('click', function(){ go(act+1); restart(); });
   stage.addEventListener('keydown', function(e){
@@ -757,6 +888,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 
       b.addEventListener('pointerleave', function(){ b.style.transform=''; });
     });
   }
+  applyLang();
 })();
 </script>
 </body>
