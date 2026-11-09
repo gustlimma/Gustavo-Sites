@@ -1,5 +1,5 @@
 /* Light / dark theme. Runs in <head> so the saved choice is applied before the page paints.
-   Independent from main.js: the click uses event delegation, so it works no matter the load order. */
+   Independent from app.js: the click uses event delegation, so it works no matter the load order. */
 (function(){
   var root = document.documentElement, KEY = 'gp-theme', theme = 'dark';
   try{ if(localStorage.getItem(KEY) === 'light') theme = 'light'; }catch(e){}

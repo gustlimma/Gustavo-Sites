@@ -68,7 +68,7 @@
     var md = document.querySelector('meta[name="description"]');
     if(md) md.setAttribute('content', L('Google Meu Negócio, Google Ads, SEO local, sites, landing pages, redes sociais e IA para colocar sua empresa na frente de quem está procurando. Atendimento 100% online.','Google Business Profile, Google Ads, local SEO, websites, landing pages, social media and AI to put your business in front of the people searching for it. 100% online service.'));
     walk();
-    document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = 'https://wa.me/5515998290596?text=' + encodeURIComponent(WA_MSG[a.getAttribute('data-wa')][lang==='en'?1:0]); });
+    document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = 'https://wa.me/5515997693348?text=' + encodeURIComponent(WA_MSG[a.getAttribute('data-wa')][lang==='en'?1:0]); });
     document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-lang')===lang)); });
   }
   function setLang(l){
@@ -78,25 +78,7 @@
   }
   document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); }); });
 
-  /* theme: dark (default) / light, remembered between visits */
-  var root = document.documentElement, themeBtn = $('#theme'), theme = 'dark';
-  try{ theme = localStorage.getItem('gp-theme') === 'light' ? 'light' : 'dark'; }catch(e){}
-  function updateThemeLabel(){
-    var t = theme==='light' ? L('Ativar modo escuro','Switch to dark mode') : L('Ativar modo claro','Switch to light mode');
-    themeBtn.setAttribute('aria-label', t); themeBtn.title = t;
-  }
-  function applyTheme(){
-    if(theme==='light') root.setAttribute('data-theme','light'); else root.removeAttribute('data-theme');
-    var mc = document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute('content', theme==='light' ? '#f4f7fb' : '#0d1b2a');
-    updateThemeLabel();
-  }
-  themeBtn.addEventListener('click', function(){
-    theme = theme==='light' ? 'dark' : 'light';
-    try{ localStorage.setItem('gp-theme', theme); }catch(e){}
-    applyTheme();
-  });
-  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', updateThemeLabel); });
-  applyTheme();
+  var root = document.documentElement; /* theme itself lives in js/theme.js */
 
   /* headline: words rise one by one */
   var H1 = ['Presta serviço e ainda não tem site? Eu crio a sua landing page.','Offer a service but don\u2019t have a website yet? I build your landing page.'];
