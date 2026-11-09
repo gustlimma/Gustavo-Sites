@@ -78,6 +78,26 @@
   }
   document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); }); });
 
+  /* theme: dark (default) / light, remembered between visits */
+  var root = document.documentElement, themeBtn = $('#theme'), theme = 'dark';
+  try{ theme = localStorage.getItem('gp-theme') === 'light' ? 'light' : 'dark'; }catch(e){}
+  function updateThemeLabel(){
+    var t = theme==='light' ? L('Ativar modo escuro','Switch to dark mode') : L('Ativar modo claro','Switch to light mode');
+    themeBtn.setAttribute('aria-label', t); themeBtn.title = t;
+  }
+  function applyTheme(){
+    if(theme==='light') root.setAttribute('data-theme','light'); else root.removeAttribute('data-theme');
+    var mc = document.querySelector('meta[name="theme-color"]'); if(mc) mc.setAttribute('content', theme==='light' ? '#f4f7fb' : '#0d1b2a');
+    updateThemeLabel();
+  }
+  themeBtn.addEventListener('click', function(){
+    theme = theme==='light' ? 'dark' : 'light';
+    try{ localStorage.setItem('gp-theme', theme); }catch(e){}
+    applyTheme();
+  });
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', updateThemeLabel); });
+  applyTheme();
+
   /* headline: words rise one by one */
   var H1 = ['Presta serviço e ainda não tem site? Eu crio a sua landing page.','Offer a service but don\u2019t have a website yet? I build your landing page.'];
   var h1 = $('#h1');
@@ -256,11 +276,12 @@
       if(p.x<0||p.x>W) p.vx*=-1; if(p.y<0||p.y>Hh) p.vy*=-1;
       var dx = mouse.x-p.x, dy = mouse.y-p.y, d = Math.hypot(dx,dy);
       if(d<160){ p.x += dx*.004; p.y += dy*.004; }
-      cx.fillStyle = d<160 ? 'rgba(255,210,63,.9)' : 'rgba(169,184,200,.55)';
+      var lt = root.getAttribute('data-theme')==='light';
+      cx.fillStyle = d<160 ? (lt ? 'rgba(217,164,0,.95)' : 'rgba(255,210,63,.9)') : (lt ? 'rgba(13,27,42,.32)' : 'rgba(169,184,200,.55)');
       cx.beginPath(); cx.arc(p.x,p.y,d<160?2.2:1.6,0,6.283); cx.fill();
       for(var j=i+1;j<pts.length;j++){
         var q = pts[j], l = Math.hypot(p.x-q.x,p.y-q.y);
-        if(l<110){ cx.strokeStyle = 'rgba(78,161,255,'+(0.22*(1-l/110))+')'; cx.lineWidth = 1; cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y); cx.stroke(); }
+        if(l<110){ cx.strokeStyle = (lt ? 'rgba(42,125,225,' : 'rgba(78,161,255,')+((lt?0.3:0.22)*(1-l/110))+')'; cx.lineWidth = 1; cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y); cx.stroke(); }
       }
     }
     if(!reduce) requestAnimationFrame(frame);
