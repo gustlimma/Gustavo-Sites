@@ -1,4 +1,4 @@
-/* Gustavo Proenca site | app v6. WhatsApp number is set only in index.html */
+/* Gustavo Proenca site | app v8. WhatsApp number is set only in index.html */
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
@@ -42,6 +42,10 @@
     'Análise gratuita da sua presença no Google':'Free analysis of your Google presence',
     'Descubra como sua empresa pode aparecer mais e atrair mais clientes.':'Find out how your business can show up more and attract more customers.',
     'Fale comigo no WhatsApp':'Message me on WhatsApp',
+    'Marketing Digital & IA':'Digital Marketing & AI','Marketing digital e inteligência artificial':'Digital marketing and artificial intelligence',
+    'Ajudo empresas e prestadores de serviço a serem encontrados no Google e a transformar buscas em clientes, com estratégia, criatividade e resultados.':'I help businesses and service providers get found on Google and turn searches into customers, with strategy, creativity and results.',
+    'Google Meu Negócio':'Google Business Profile','Google Ads':'Google Ads','Sites e landing pages':'Websites and landing pages',
+    'Atendimento 100% online, para qualquer empresa do Brasil.':'100% online service for any business in Brazil.',
     'Sua empresa':'Your business','5,0':'5.0','no Google':'on Google','Visibilidade':'Visibility','Ligações':'Calls','Rotas no mapa':'Map directions',
     'Exemplo ilustrativo de perfil de empresa.':'Illustrative business profile example.',
     '© 2026 Gustavo Proença. Marketing Digital & IA.':'© 2026 Gustavo Proença. Digital Marketing & AI.','Ligar':'Call'
