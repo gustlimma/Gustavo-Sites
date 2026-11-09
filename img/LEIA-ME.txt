@@ -1,0 +1,37 @@
+IMAGENS DO SITE
+===============
+
+Carrossel 3D "Veja como pode ficar o site do seu negocio"
+---------------------------------------------------------
+Tamanho ideal:  800 x 1000 px  (proporcao 4:5, vertical)
+Minimo:         600 x 750 px
+Para telas retina muito nitidas: 1200 x 1500 px (ate ~250 KB cada)
+
+Nomes dos arquivos (um por exemplo, de 1 a 7):
+  site-1.webp   site-2.webp   site-3.webp   site-4.webp
+  site-5.webp   site-6.webp   site-7.webp
+Tambem funcionam .jpg, .jpeg e .png com o mesmo nome (site-1.jpg etc.).
+
+Dicas:
+- Mostre o TOPO do site (primeira tela). A imagem e cortada pela parte de cima.
+- Deixe o conteudo importante nos 85% de cima: a base do card tem uma sombra
+  suave e a legenda fica logo abaixo.
+- Cantos arredondados sao aplicados pelo site; envie a imagem retangular.
+- Se quiser mais ou menos que 7 exemplos, edite a lista EXAMPLES em js/main.js.
+
+Outras imagens do site (logo, favicon, foto): coloque nesta mesma pasta.
+
+
+LOGO E FAVICON (ja prontos, nao precisa mexer)
+----------------------------------------------
+logo.png              512x512, fundo transparente. Usado no cabecalho do site.
+favicon.ico           icone da aba do navegador (16, 32, 48 e 64 px num so arquivo).
+favicon-16.png        icone da aba, 16x16.
+favicon-32.png        icone da aba, 32x32.
+apple-touch-icon.png  180x180, icone ao "Adicionar a tela inicial" no iPhone.
+icon-192.png          192x192, icone para Android / PWA.
+icon-512.png          512x512, icone grande (redes sociais, Google, etc.).
+
+Para trocar o logo no futuro: substitua logo.png e gere os favicons novamente
+mantendo EXATAMENTE estes nomes. O favicon e quadrado com fundo branco e cantos
+arredondados porque o G azul-escuro some em abas escuras do navegador.
